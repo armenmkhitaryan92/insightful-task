@@ -19,7 +19,7 @@ export class AppComponent implements OnInit {
     totalWorkedTime: 0,
     paidHours: 0,
     overTImePaidHours: 0
-  }
+  };
 
   public displayedColumns = ['select', 'name', 'email', 'totalWorkedTime', 'totalPaidRate', 'totalOverTimePaid'];
   private dataSource = new MatTableDataSource<Employee>(this.employees);
@@ -38,11 +38,11 @@ export class AppComponent implements OnInit {
   private getEmployees(): void {
     this.employeeService.getEmployees()
       .subscribe((res: Employee[]) => {
-        console.log(123, res);
         this.employees = res;
         this.dataSource = new MatTableDataSource<Employee>(this.employees);
         this.setTotals();
       });
+    return;
   }
 
   private setTotals(): void {
@@ -73,9 +73,6 @@ export class AppComponent implements OnInit {
     dialogRef.componentInstance
       .submit$
       .subscribe((res: Employee[]) => {
-        console.log('edited', res);
-        console.log('all', this.employees);
-
         this.employees.forEach((employee: Employee, index: number) => {
           res.forEach((item: Employee) => {
             if (item.id === employee.id) {
