@@ -1,1 +1,45 @@
 /* You can add global styles to this file, and also import other style files */
+@import "assets/styles/main";
+
+html, body {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+
+  * {
+    @include scroll-bar();
+  }
+
+  @for $i from 0 through 100 {
+    @if $i % 2 == 0 {
+      .mt-#{$i} {
+        margin-top: #{$i}px !important;
+      }
+      .mb-#{$i} {
+        margin-bottom: #{$i}px !important;
+      }
+      .mr-#{$i} {
+        margin-right: #{$i}px !important;
+      }
+      .ml-#{$i} {
+        margin-left: #{$i}px !important;
+      }
+    }
+  }
+
+  .d-flex {
+    display: flex;
+  }
+
+  .employee-shift-info-table {
+    thead {
+      position: sticky;
+      top: 0;
+    }
+  }
+
+
+}

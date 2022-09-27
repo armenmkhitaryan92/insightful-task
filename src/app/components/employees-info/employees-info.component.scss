@@ -1,0 +1,32 @@
+.employees-info-main-container {
+  padding: 0 24px;
+  overflow-y: auto;
+  max-height: 80vh;
+
+  .employees {
+    .single-employee {
+      .employee-title {
+        font-weight: bold;
+      }
+    }
+  }
+
+  .form-wrapper {
+    max-height: 250px;
+    overflow-y: scroll;
+
+    table {
+      width: 100%;
+    }
+  }
+
+  .buttons-wrapper {
+    position: sticky;
+    bottom: 0;
+    background-color: white;
+    padding-top: 16px;
+    display: flex;
+    justify-content: end;
+  }
+}
+

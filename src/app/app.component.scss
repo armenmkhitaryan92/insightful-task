@@ -1,0 +1,21 @@
+.dashboard-main-container {
+  padding: 10px;
+
+  table {
+    width: 80%;
+    border: 1px solid;
+    border-bottom: none;
+    margin: 20px auto 0;
+  }
+
+  .bulk-edit-btn-wrapper {
+    display: flex;
+    justify-content: end;
+    width: 80%;
+    margin: auto;
+    margin-top: 20px;
+  }
+}
+
+
+

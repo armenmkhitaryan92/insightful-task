@@ -1,0 +1,163 @@
+%flexCenter {
+  display: flex;
+  align-items: center;
+}
+
+%flexColumn {
+  display: flex;
+  flex-direction: column;
+}
+
+%flexEnd {
+  display: flex;
+  justify-content: flex-end;
+}
+
+%flexBetween {
+  display: flex;
+  justify-content: space-between;;
+}
+
+%flexCenterSpace-between {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+%flexCenterCenter {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+%flexCenterStart {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+%flexCenterEnd {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+%flexCenterNormal {
+  display: flex;
+  align-items: center;
+  justify-content: normal;
+}
+
+%flexCenterSpace-around {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}
+
+%flexCenterSpace-evenly {
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+}
+
+%flexCenterColumn {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+
+%flexCenterCenterColumn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+%flexColumnSpace-between {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+%flexColumnSpace-evenly {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+}
+
+%flexColumnEnd {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}
+
+%flexColumnStart {
+  display: flex;
+  align-items: flex-start;
+  flex-direction: column;
+}
+
+%flexStartSpace-between {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+/* FLEXBOX END */
+
+/* Background image */
+
+%backgroundImage {
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+%bgImageCover {
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+}
+
+%bgImageContain {
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+}
+
+/* Background image */
+
+%ellipsis {
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
+
+%overlay {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
+
+%backdrop {
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  width: 100%;
+  height: 100%;
+}
+
+%pseudo {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+%absoluteCenter {
+  position: absolute;
+  margin: auto;
+  left: 0;
+  right: 0;
+}

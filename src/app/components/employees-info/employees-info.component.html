@@ -1,0 +1,90 @@
+<div class="employees-info-main-container">
+  <form [formGroup]="employeesForm" (ngSubmit)="onSubmit()">
+    <div class="employees" formArrayName="employees">
+      <div class="single-employee mt-30" *ngFor="let item of employeeFormGroups.controls; let i = index;">
+
+        <div class="employee-title mb-12">Employee {{i + 1}}</div>
+
+        <div [formGroupName]="i">
+          <div class="form-wrapper d-flex">
+
+            <div class="mr-6">
+              <mat-form-field appearance="fill">
+                <mat-label>Employee name:</mat-label>
+                <input matInput formControlName="name">
+              </mat-form-field>
+            </div>
+
+            <div class="mr-6">
+              <mat-form-field appearance="fill">
+                <mat-label>Employee hourly rate:</mat-label>
+                <input type="number" matInput formControlName="hourlyRate">
+              </mat-form-field>
+            </div>
+
+            <div>
+              <mat-form-field appearance="fill">
+                <mat-label>Employee overtime hourly rate:</mat-label>
+                <input type="number" matInput formControlName="overtimeRate">
+              </mat-form-field>
+            </div>
+          </div>
+
+          <div class="form-wrapper">
+            <table
+              mat-table
+              [dataSource]="data.employees[i].shifts" formArrayName="shifts"
+              class="employee-shift-info-table mat-elevation-z8">
+
+              <!-- Shift Column -->
+              <ng-container matColumnDef="shift">
+                <th mat-header-cell *matHeaderCellDef>Shift</th>
+                <td mat-cell *matCellDef="let element; let index = index">Shift {{index + 1}}</td>
+              </ng-container>
+
+              <!-- Clock In Time Column -->
+              <ng-container matColumnDef="clockIn">
+                <th mat-header-cell *matHeaderCellDef>Clock In Time</th>
+                <td mat-cell *matCellDef="let element; let index = index" [formGroupName]="index">
+                  <input type="time" formControlName="clockIn">
+                </td>
+              </ng-container>
+
+              <!-- Clock Out Time Column -->
+              <ng-container matColumnDef="clockOut">
+                <th mat-header-cell *matHeaderCellDef>Clock Out Time</th>
+                <td mat-cell *matCellDef="let element; let index = index" [formGroupName]="index">
+                  <input type="time" formControlName="clockOut">
+                </td>
+              </ng-container>
+
+              <!-- Total Clocked Column -->
+              <ng-container matColumnDef="totalTime">
+                <th mat-header-cell *matHeaderCellDef>Total Clocked</th>
+                <td mat-cell *matCellDef="let element; let index = index" [formGroupName]="index">
+                  {{getTImeDiffByHours(
+                  employeeFormShiftGroups(i).controls[index].value.clockIn,
+                  employeeFormShiftGroups(i).controls[index].value.clockOut
+                )}}h
+                </td>
+              </ng-container>
+
+              <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+              <tr mat-row *matRowDef="let row; let i = index; columns: displayedColumns;"></tr>
+            </table>
+          </div>
+        </div>
+
+        <hr class="mt-30">
+      </div>
+
+    </div>
+
+    <div class="buttons-wrapper">
+      <button mat-button color="primary">Submit</button>
+      <button mat-button color="warn" (click)="onClose()">Cancel</button>
+    </div>
+
+  </form>
+</div>
+
