@@ -6,7 +6,7 @@ export const getTImeDiffByHours = (time1: string, time2: string): number => {
 
   const diff = date2.getTime() - date1.getTime();
   return Math.round(diff / 1000 / 60 / 60);
-}
+};
 
 export const cloneObject = <T = Params>(obj: T): T => {
   return JSON.parse(JSON.stringify(obj));

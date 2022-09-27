@@ -67,7 +67,7 @@ export class EmployeesInfoComponent implements OnInit {
   }
 
   public employeeFormShiftGroups(i: number): FormArray {
-    return this.employeeFormGroups.controls[i].get('shifts') as FormArray
+    return this.employeeFormGroups.controls[i].get('shifts') as FormArray;
   }
 
   public onSubmit(): void {

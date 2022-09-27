@@ -53,7 +53,7 @@ export class EmployeeService {
         totalWorkedTime: this.getShiftsTImeTotalHours(employee.shifts),
         totalOverTimePaid: total.totalOvertimePrice,
         totalPaidRate: total.totalPrice
-      }
+      };
     });
   }
 
