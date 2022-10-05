@@ -1,7 +1,7 @@
-import {getTImeDiffByHours} from '../../common/helpers';
 import {Employee, EmployeeShift} from '../../common/interfaces';
 import {FormArray, FormBuilder, Validators} from '@angular/forms';
 import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material/dialog';
+import {getTImeDiffByHours, getTImeDiffByHours2} from '../../common/helpers';
 import {ChangeDetectionStrategy, Component, EventEmitter, Inject, OnInit, Output} from '@angular/core';
 
 @Component({
@@ -31,7 +31,7 @@ export class EmployeesInfoComponent implements OnInit {
   }
 
   /* TODO It is not best practise call method on template (change this later) */
-  public getTImeDiffByHours(time1: string, time2: string): number {
+  public getTImeDiffByHours(time1: string, time2: string) {
     return getTImeDiffByHours(time1, time2);
   }
 
@@ -71,6 +71,15 @@ export class EmployeesInfoComponent implements OnInit {
   }
 
   public onSubmit(): void {
+
+    // @ts-ignore
+    const shift1 = this.employeesForm.value.employees[0].shifts[0];
+    // @ts-ignore
+    const shift2 = this.employeesForm.value.employees[0].shifts[1];
+    getTImeDiffByHours2(shift1.clockIn, shift1.clockOut);
+    console.log('-----------------------');
+    // console.log('asd', dif);
+    getTImeDiffByHours2(shift2.clockIn, shift2.clockOut);
     this.submit$.emit(this.employeesForm.value.employees as Employee[]);
     this.onClose();
   }
@@ -79,4 +88,16 @@ export class EmployeesInfoComponent implements OnInit {
     this.dialogRef.close();
   }
 
+  onTimeChange() {
+    // @ts-ignore
+    const shift1 = this.employeesForm.value.employees[0].shifts[0];
+    // @ts-ignore
+    const shift2 = this.employeesForm.value.employees[0].shifts[1];
+    getTImeDiffByHours2(shift1.clockIn, shift1.clockOut);
+    console.log('-----------------------');
+    getTImeDiffByHours2(shift2.clockIn, shift2.clockOut);
+  }
+
 }
+
+

@@ -12,11 +12,13 @@ import {MatCheckboxModule} from '@angular/material/checkbox';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import { EmployeesListComponent } from './components/employees-list/employees-list.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    EmployeesInfoComponent
+    EmployeesInfoComponent,
+    EmployeesListComponent
   ],
   imports: [
     BrowserModule,

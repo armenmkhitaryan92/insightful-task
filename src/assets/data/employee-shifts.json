@@ -2,32 +2,32 @@
   {
     "employeeId": 1,
     "id": 1,
-    "clockIn": "23:34",
-    "clockOut": "11:34"
+    "clockIn": "20:00",
+    "clockOut": "11:00"
   },
   {
     "employeeId": 1,
     "id": 2,
-    "clockIn": "23:34",
-    "clockOut": "11:34"
+    "clockIn": "23:00",
+    "clockOut": "01:00"
   },
   {
     "employeeId": 1,
     "id": 3,
-    "clockIn": "23:34",
-    "clockOut": "11:34"
+    "clockIn": "18:20",
+    "clockOut": "07:15"
   },
   {
     "employeeId": 1,
     "id": 4,
-    "clockIn": "23:34",
-    "clockOut": "11:34"
+    "clockIn": "10:30",
+    "clockOut": "23:40"
   },
   {
     "employeeId": 1,
     "id": 5,
-    "clockIn": "23:34",
-    "clockOut": "11:34"
+    "clockIn": "14:00",
+    "clockOut": "11:10"
   },
   {
     "employeeId": 1,

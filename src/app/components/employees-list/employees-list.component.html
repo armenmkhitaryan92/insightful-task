@@ -1,0 +1,78 @@
+<div class="dashboard-main-container">
+
+  <h1>InsightFull Task</h1>
+  <hr>
+
+  <h2>General information on the dashboard</h2>
+
+  <div class="user-info-container">
+    <p>Total number of employees: <strong>{{employees.length}}</strong></p>
+    <p>Total Clocked in time: <strong>{{totals.totalWorkedTime}}</strong></p>
+    <p>Total amount paid for regular hours: <strong>{{totals.paidHours}}$</strong></p>
+    <p>Total overtime amount paid for overtime hours: <strong>{{totals.overTImePaidHours}}$</strong></p>
+  </div>
+
+  <hr>
+
+  <table mat-table [dataSource]="employees" class="mat-elevation-z8">
+
+    <!-- Checkbox Column -->
+    <ng-container matColumnDef="select">
+      <th mat-header-cell *matHeaderCellDef>
+        <mat-checkbox
+          (change)="$event ? masterToggle() : null"
+          [checked]="selection.hasValue() && isAllSelected()"
+          [indeterminate]="selection.hasValue() && !isAllSelected()"
+        ></mat-checkbox>
+      </th>
+
+      <td mat-cell *matCellDef="let row">
+        <mat-checkbox
+          (click)="$event.stopPropagation()"
+          (change)="$event ? selection.toggle(row) : null"
+          [checked]="selection.isSelected(row)"
+        ></mat-checkbox>
+      </td>
+    </ng-container>
+
+    <!-- Name Column -->
+    <ng-container matColumnDef="name">
+      <th mat-header-cell *matHeaderCellDef>Name</th>
+      <td mat-cell *matCellDef="let element">{{element.name}}</td>
+    </ng-container>
+
+    <!-- Email Column -->
+    <ng-container matColumnDef="email">
+      <th mat-header-cell *matHeaderCellDef>Email</th>
+      <td mat-cell *matCellDef="let element">{{element.email}}</td>
+    </ng-container>
+
+    <!-- Total Clocked Column -->
+    <ng-container matColumnDef="totalWorkedTime">
+      <th mat-header-cell *matHeaderCellDef>Total Clocked</th>
+      <td mat-cell *matCellDef="let element">{{element.total.totalWorkedTime}} hours</td>
+    </ng-container>
+
+    <!-- Total Paid Rate Column -->
+    <ng-container matColumnDef="totalPaidRate">
+      <th mat-header-cell *matHeaderCellDef>Total Paid Rate</th>
+      <td mat-cell *matCellDef="let element">{{element.total.totalPaidRate}}$</td>
+    </ng-container>
+
+    <!-- Total Over Time Paid Rate Column -->
+    <ng-container matColumnDef="totalOverTimePaid">
+      <th mat-header-cell *matHeaderCellDef>Total Over TIme Paid Rate</th>
+      <td mat-cell *matCellDef="let element">{{element.total.totalOverTimePaid}}$</td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;" (click)="selection.toggle(row)"></tr>
+  </table>
+
+  <div class="bulk-edit-btn-wrapper">
+    <button mat-button class="mat-button primary" (click)="onEditEmployees()" *ngIf="selection.selected.length">
+      Bulk edit
+    </button>
+  </div>
+
+</div>
