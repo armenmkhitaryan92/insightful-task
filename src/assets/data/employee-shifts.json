@@ -20,14 +20,14 @@
   {
     "employeeId": 1,
     "id": 4,
-    "clockIn": "10:30",
-    "clockOut": "23:40"
+    "clockIn": "07:00",
+    "clockOut": "10:00"
   },
   {
     "employeeId": 1,
     "id": 5,
-    "clockIn": "14:00",
-    "clockOut": "11:10"
+    "clockIn": "07:00",
+    "clockOut": "10:00"
   },
   {
     "employeeId": 1,

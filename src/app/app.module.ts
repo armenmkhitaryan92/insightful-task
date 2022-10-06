@@ -1,5 +1,6 @@
 import {NgModule} from '@angular/core';
 import {AppComponent} from './app.component';
+import {CalendarModule} from 'primeng/calendar';
 import {EmployeesInfoComponent} from './components';
 import {HttpClientModule} from '@angular/common/http';
 import {AppRoutingModule} from './app-routing.module';
@@ -27,6 +28,7 @@ import { EmployeesListComponent } from './components/employees-list/employees-li
     FormsModule,
     HttpClientModule,
     AppRoutingModule,
+    CalendarModule,
     /* Material here */
     MatTableModule,
     MatButtonModule,

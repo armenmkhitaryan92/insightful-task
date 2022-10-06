@@ -8,7 +8,7 @@ import {ChangeDetectionStrategy, Component, EventEmitter, Inject, OnInit, Output
   selector: 'app-employees-info',
   templateUrl: './employees-info.component.html',
   styleUrls: ['./employees-info.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush
+  // changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class EmployeesInfoComponent implements OnInit {
 
@@ -33,6 +33,10 @@ export class EmployeesInfoComponent implements OnInit {
   /* TODO It is not best practise call method on template (change this later) */
   public getTImeDiffByHours(time1: string, time2: string) {
     return getTImeDiffByHours(time1, time2);
+  }
+
+  public getTImeDiffByHours2(time1: string, time2: string) {
+    return getTImeDiffByHours2(time1, time2);
   }
 
   private initFormArr(): void {
@@ -88,7 +92,8 @@ export class EmployeesInfoComponent implements OnInit {
     this.dialogRef.close();
   }
 
-  onTimeChange() {
+  onTimeChange(e: Event) {
+    console.log((e.target as HTMLInputElement).value);
     // @ts-ignore
     const shift1 = this.employeesForm.value.employees[0].shifts[0];
     // @ts-ignore
