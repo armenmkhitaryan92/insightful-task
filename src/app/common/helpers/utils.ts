@@ -18,21 +18,16 @@ export const cloneObject = <T = Params>(obj: T): T => {
   return JSON.parse(JSON.stringify(obj));
 };
 
-export const getTImeDiffByHours2 = (time1: string, time2: string) => {
+export const getTimeDiffOnDays = (time1: string, time2: string) => {
   const totalHours = getTImeDiffByHours(time1, time2);
-  const date1 = new Date(`08/05/2022 ${time1}`);
-
-  let today = 0;
+  let today = totalHours;
   let tomorrow = 0;
 
-  const dayFinished = '24:00';
-  const dayFinishedDate = new Date(`08/05/2022 ${dayFinished}`);
+  const startTime = +time1.split(':')[0];
 
-  today = Math.round((dayFinishedDate.getTime() - date1.getTime()) / 1000 / 60 / 60);
-  tomorrow = totalHours - today;
-
-  if (tomorrow < 0) {
-    tomorrow = 0;
+  if ((startTime + totalHours) > 24) {
+    tomorrow = startTime + totalHours - 24;
+    today = 24 - startTime;
   }
 
   return {today, tomorrow};

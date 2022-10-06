@@ -1,7 +1,7 @@
 import {Employee, EmployeeShift} from '../../common/interfaces';
 import {FormArray, FormBuilder, Validators} from '@angular/forms';
 import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material/dialog';
-import {getTImeDiffByHours, getTImeDiffByHours2} from '../../common/helpers';
+import {getTImeDiffByHours, getTimeDiffOnDays} from '../../common/helpers';
 import {Component, EventEmitter, Inject, OnInit, Output} from '@angular/core';
 
 @Component({
@@ -36,7 +36,7 @@ export class EmployeesInfoComponent implements OnInit {
   }
 
   public getTImeDiffByHours2(time1: string, time2: string) {
-    return getTImeDiffByHours2(time1, time2);
+    return getTimeDiffOnDays(time1, time2);
   }
 
   private initFormArr(): void {
@@ -49,8 +49,8 @@ export class EmployeesInfoComponent implements OnInit {
           id: this.formBuilder.control(i.id),
           clockIn: this.formBuilder.control(i.clockIn, [Validators.required]),
           clockOut: this.formBuilder.control(i.clockOut, [Validators.required]),
-          today: this.formBuilder.control(getTImeDiffByHours2(i.clockIn, i.clockOut).today),
-          tomorrow: this.formBuilder.control(getTImeDiffByHours2(i.clockIn, i.clockOut).tomorrow),
+          today: this.formBuilder.control(getTimeDiffOnDays(i.clockIn, i.clockOut).today),
+          tomorrow: this.formBuilder.control(getTimeDiffOnDays(i.clockIn, i.clockOut).tomorrow),
         });
         (arr as FormArray).push(group);
       });

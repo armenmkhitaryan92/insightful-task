@@ -84,14 +84,18 @@
                   }}h-->
 
 
-                                    {{employeeFormShiftGroups(i).controls[index].value.today}}h
-                                    {{employeeFormShiftGroups(i).controls[index].value.tomorrow}}h
+                  {{employeeFormShiftGroups(i).controls[index].value.today}}h
+                  {{employeeFormShiftGroups(i).controls[index].value.tomorrow}}h
+                  {{ getTImeDiffByHours(
+                  employeeFormShiftGroups(i).controls[index].value.clockIn,
+                  employeeFormShiftGroups(i).controls[index].value.clockOut
+                )}}h
 
                   ==
                   {{
                   $any(employeesForm.value.employees![i]).shifts[index].today +
                   (($any(employeesForm.value.employees![i]).shifts[index - 1]) ?
-                  $any(employeesForm.value.employees![i]).shifts[index - 1].tomorrow : 0)
+                    $any(employeesForm.value.employees![i]).shifts[index - 1].tomorrow : 0)
                   }}
 
                   <!--
