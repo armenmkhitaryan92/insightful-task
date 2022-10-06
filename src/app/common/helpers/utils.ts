@@ -31,5 +31,9 @@ export const getTImeDiffByHours2 = (time1: string, time2: string) => {
   today = Math.round((dayFinishedDate.getTime() - date1.getTime()) / 1000 / 60 / 60);
   tomorrow = totalHours - today;
 
+  if (tomorrow < 0) {
+    tomorrow = 0;
+  }
+
   return {today, tomorrow};
 };

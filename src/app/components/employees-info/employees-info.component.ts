@@ -2,7 +2,7 @@ import {Employee, EmployeeShift} from '../../common/interfaces';
 import {FormArray, FormBuilder, Validators} from '@angular/forms';
 import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material/dialog';
 import {getTImeDiffByHours, getTImeDiffByHours2} from '../../common/helpers';
-import {ChangeDetectionStrategy, Component, EventEmitter, Inject, OnInit, Output} from '@angular/core';
+import {Component, EventEmitter, Inject, OnInit, Output} from '@angular/core';
 
 @Component({
   selector: 'app-employees-info',
@@ -44,11 +44,13 @@ export class EmployeesInfoComponent implements OnInit {
 
       const arr = this.formBuilder.array([]);
 
-      item.shifts.forEach((i: EmployeeShift) => {
+      item.shifts.forEach((i: EmployeeShift, shiftIndex: number) => {
         const group = this.formBuilder.group({
           id: this.formBuilder.control(i.id),
           clockIn: this.formBuilder.control(i.clockIn, [Validators.required]),
-          clockOut: this.formBuilder.control(i.clockOut, [Validators.required])
+          clockOut: this.formBuilder.control(i.clockOut, [Validators.required]),
+          today: this.formBuilder.control(getTImeDiffByHours2(i.clockIn, i.clockOut).today),
+          tomorrow: this.formBuilder.control(getTImeDiffByHours2(i.clockIn, i.clockOut).tomorrow),
         });
         (arr as FormArray).push(group);
       });
@@ -76,14 +78,8 @@ export class EmployeesInfoComponent implements OnInit {
 
   public onSubmit(): void {
 
-    // @ts-ignore
-    const shift1 = this.employeesForm.value.employees[0].shifts[0];
-    // @ts-ignore
-    const shift2 = this.employeesForm.value.employees[0].shifts[1];
-    getTImeDiffByHours2(shift1.clockIn, shift1.clockOut);
-    console.log('-----------------------');
-    // console.log('asd', dif);
-    getTImeDiffByHours2(shift2.clockIn, shift2.clockOut);
+    console.log(this.employeesForm.value.employees);
+
     this.submit$.emit(this.employeesForm.value.employees as Employee[]);
     this.onClose();
   }
@@ -92,15 +88,8 @@ export class EmployeesInfoComponent implements OnInit {
     this.dialogRef.close();
   }
 
-  onTimeChange(e: Event) {
+  public onTimeChange(e: Event, employeeIndex: number, shiftIndex: number): void {
     console.log((e.target as HTMLInputElement).value);
-    // @ts-ignore
-    const shift1 = this.employeesForm.value.employees[0].shifts[0];
-    // @ts-ignore
-    const shift2 = this.employeesForm.value.employees[0].shifts[1];
-    getTImeDiffByHours2(shift1.clockIn, shift1.clockOut);
-    console.log('-----------------------');
-    getTImeDiffByHours2(shift2.clockIn, shift2.clockOut);
   }
 
 }

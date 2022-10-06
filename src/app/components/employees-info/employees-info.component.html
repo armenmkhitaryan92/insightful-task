@@ -46,8 +46,7 @@
               <ng-container matColumnDef="clockIn">
                 <th mat-header-cell *matHeaderCellDef>Clock In Time</th>
                 <td mat-cell *matCellDef="let element; let index = index" [formGroupName]="index">
-                  <input type="time" formControlName="clockIn" (change)="onTimeChange($event)">
-<!--                  <p-calendar></p-calendar>-->
+                  <input type="time" formControlName="clockIn" (change)="onTimeChange($event, i, index)">
                 </td>
               </ng-container>
 
@@ -55,7 +54,7 @@
               <ng-container matColumnDef="clockOut">
                 <th mat-header-cell *matHeaderCellDef>Clock Out Time</th>
                 <td mat-cell *matCellDef="let element; let index = index" [formGroupName]="index">
-                  <input type="time" formControlName="clockOut" (change)="onTimeChange($event)">
+                  <input type="time" formControlName="clockOut" (change)="onTimeChange($event, i, index)">
                 </td>
               </ng-container>
 
@@ -63,7 +62,7 @@
               <ng-container matColumnDef="totalTime">
                 <th mat-header-cell *matHeaderCellDef>Total Clocked</th>
                 <td mat-cell *matCellDef="let element; let index = index" [formGroupName]="index">
-                  {{
+                  <!--{{
                   getTImeDiffByHours2(
                     employeeFormShiftGroups(i).controls[index].value.clockIn,
                     employeeFormShiftGroups(i).controls[index].value.clockOut
@@ -82,10 +81,18 @@
                     employeeFormShiftGroups(i).controls[index].value.clockIn,
                     employeeFormShiftGroups(i).controls[index].value.clockOut
                   )
-                  }}h
+                  }}h-->
 
 
+                                    {{employeeFormShiftGroups(i).controls[index].value.today}}h
+                                    {{employeeFormShiftGroups(i).controls[index].value.tomorrow}}h
 
+                  ==
+                  {{
+                  $any(employeesForm.value.employees![i]).shifts[index].today +
+                  (($any(employeesForm.value.employees![i]).shifts[index - 1]) ?
+                  $any(employeesForm.value.employees![i]).shifts[index - 1].tomorrow : 0)
+                  }}
 
                   <!--
                    {{getTImeDiffByHours2(element.clockIn, element.clockOut).today}}h
