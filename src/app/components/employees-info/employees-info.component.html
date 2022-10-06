@@ -62,48 +62,9 @@
               <ng-container matColumnDef="totalTime">
                 <th mat-header-cell *matHeaderCellDef>Total Clocked</th>
                 <td mat-cell *matCellDef="let element; let index = index" [formGroupName]="index">
-                  <!--{{
-                  getTImeDiffByHours2(
-                    employeeFormShiftGroups(i).controls[index].value.clockIn,
-                    employeeFormShiftGroups(i).controls[index].value.clockOut
-                  ).today
-                  }}h
-
-                  {{
-                  getTImeDiffByHours2(
-                    employeeFormShiftGroups(i).controls[index].value.clockIn,
-                    employeeFormShiftGroups(i).controls[index].value.clockOut
-                  ).tomorrow
-                  }}h
-                   ==
-                  {{
-                  getTImeDiffByHours(
-                    employeeFormShiftGroups(i).controls[index].value.clockIn,
-                    employeeFormShiftGroups(i).controls[index].value.clockOut
-                  )
-                  }}h-->
-
-
-                  {{employeeFormShiftGroups(i).controls[index].value.today}}h
-                  {{employeeFormShiftGroups(i).controls[index].value.tomorrow}}h
-                  {{ getTImeDiffByHours(
-                  employeeFormShiftGroups(i).controls[index].value.clockIn,
-                  employeeFormShiftGroups(i).controls[index].value.clockOut
-                )}}h
-
-                  ==
-                  {{
-                  $any(employeesForm.value.employees![i]).shifts[index].today +
-                  (($any(employeesForm.value.employees![i]).shifts[index - 1]) ?
-                    $any(employeesForm.value.employees![i]).shifts[index - 1].tomorrow : 0)
-                  }}
-
-                  <!--
-                   {{getTImeDiffByHours2(element.clockIn, element.clockOut).today}}h
-                  {{getTImeDiffByHours2(element.clockIn, element.clockOut).tomorrow}}h
-                   ==
-                  {{getTImeDiffByHours(element.clockIn, element.clockOut)}}h
-                  -->
+                  <span *ngIf="$any(employeesForm.value.employees![i]).shifts as shifts">
+                     {{shifts[index].today + ((shifts[index - 1]) ? shifts[index - 1].tomorrow : 0)}}h
+                  </span>
                 </td>
               </ng-container>
 

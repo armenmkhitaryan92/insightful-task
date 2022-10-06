@@ -1,14 +1,14 @@
+import {getTimeDiffOnDays} from '../../common/helpers';
 import {Employee, EmployeeShift} from '../../common/interfaces';
 import {FormArray, FormBuilder, Validators} from '@angular/forms';
 import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material/dialog';
-import {getTImeDiffByHours, getTimeDiffOnDays} from '../../common/helpers';
-import {Component, EventEmitter, Inject, OnInit, Output} from '@angular/core';
+import {ChangeDetectionStrategy, Component, EventEmitter, Inject, OnInit, Output} from '@angular/core';
 
 @Component({
   selector: 'app-employees-info',
   templateUrl: './employees-info.component.html',
   styleUrls: ['./employees-info.component.scss'],
-  // changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class EmployeesInfoComponent implements OnInit {
 
@@ -28,15 +28,6 @@ export class EmployeesInfoComponent implements OnInit {
 
   ngOnInit(): void {
     this.initFormArr();
-  }
-
-  /* TODO It is not best practise call method on template (change this later) */
-  public getTImeDiffByHours(time1: string, time2: string) {
-    return getTImeDiffByHours(time1, time2);
-  }
-
-  public getTImeDiffByHours2(time1: string, time2: string) {
-    return getTimeDiffOnDays(time1, time2);
   }
 
   private initFormArr(): void {
@@ -72,14 +63,7 @@ export class EmployeesInfoComponent implements OnInit {
     return this.employeesForm.get('employees') as FormArray;
   }
 
-  public employeeFormShiftGroups(i: number): FormArray {
-    return this.employeeFormGroups.controls[i].get('shifts') as FormArray;
-  }
-
   public onSubmit(): void {
-
-    console.log(this.employeesForm.value.employees);
-
     this.submit$.emit(this.employeesForm.value.employees as Employee[]);
     this.onClose();
   }
@@ -89,7 +73,10 @@ export class EmployeesInfoComponent implements OnInit {
   }
 
   public onTimeChange(e: Event, employeeIndex: number, shiftIndex: number): void {
-    console.log((e.target as HTMLInputElement).value);
+    const employeeControl = (this.employeesForm.get('employees') as FormArray).at(employeeIndex);
+    const shiftGroup = (employeeControl.get('shifts') as FormArray).at(shiftIndex);
+    const days = getTimeDiffOnDays(shiftGroup.value.clockIn, shiftGroup.value.clockOut);
+    shiftGroup.patchValue(days);
   }
 
 }

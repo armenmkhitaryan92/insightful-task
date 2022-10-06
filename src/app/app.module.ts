@@ -3,7 +3,6 @@ import {AppComponent} from './app.component';
 import {CalendarModule} from 'primeng/calendar';
 import {EmployeesInfoComponent} from './components';
 import {HttpClientModule} from '@angular/common/http';
-import {AppRoutingModule} from './app-routing.module';
 import {MatTableModule} from '@angular/material/table';
 import {MatInputModule} from '@angular/material/input';
 import {BrowserModule} from '@angular/platform-browser';
@@ -27,7 +26,6 @@ import { EmployeesListComponent } from './components/employees-list/employees-li
     ReactiveFormsModule,
     FormsModule,
     HttpClientModule,
-    AppRoutingModule,
     CalendarModule,
     /* Material here */
     MatTableModule,
